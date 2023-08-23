@@ -7,12 +7,12 @@ import { UpdateRouteDto } from './dto/update-route.dto';
 export class RoutesController {
   constructor(private readonly routesService: RoutesService) {}
 
-  @Post()
+  @Get()
   create(@Body() createRouteDto: CreateRouteDto) {
     return this.routesService.create(createRouteDto);
   }
 
-  @Get()
+  @Post()
   findAll() {
     return this.routesService.findAll();
   }
