@@ -1,9 +1,24 @@
-FROM node:20-slim
+# Use a imagem oficial do Node.js como base
+FROM node:20
 
-RUN apt update && apt install -y openssl procps
+# Crie um diretório para a aplicação
+WORKDIR /usr/src/app
 
-WORKDIR /home/node/app
+# Copie o arquivo package.json e package-lock.json para a imagem
+COPY package*.json ./
 
-USER node
+# Instale as dependências da aplicação
+RUN npm install
 
-CMD ["sh", "-c", "npm run start:prod & tail -f /dev/null"]
+# Copie o restante dos arquivos da aplicação
+COPY . .
+
+# Compile o projeto Nest.js e gere o schema do Prisma
+RUN npx prisma generate
+RUN npm run build
+
+# Exponha a porta que a aplicação estará ouvindo
+EXPOSE 3000
+
+# Inicie a aplicação quando o contêiner for executado
+CMD ["node", "dist/main"]
