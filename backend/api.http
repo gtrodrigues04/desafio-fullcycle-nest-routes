@@ -5,6 +5,14 @@ GET http://localhost:3000/api/routes
 Content-Type: application/json
 
 {
-    "name": "rota test"
+    "name": "rota test",
+    "source": {
+        "lat": 1,
+        "lng": 1
+    },
+    "destination": {
+        "lat": 1,
+        "lng": 1
+    }
 }
 

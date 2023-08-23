@@ -11,20 +11,8 @@ export class RoutesService {
     return await this.prismaService.route.create({
       data: {
         name: createRouteDto.name,
-        source: {
-          name: 'Lavras, MG',
-          location: {
-            lat: 0,
-            lng: 0
-          }
-        },
-        destination: {
-          name: 'Varginha, MG',
-          location: {
-            lat: 0,
-            lng: 0
-          },
-        }
+        source: createRouteDto.source,
+        destination: createRouteDto.destination
       }
     });
   }

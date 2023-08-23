@@ -19,11 +19,6 @@ model Route {
 }
 
 type Place {
-  name String
-  location Coord
-}
-
-type Coord {
-  lat Float
-  lng Float
+  lat Float? @default(0)
+  lng Float? @default(0)
 }
